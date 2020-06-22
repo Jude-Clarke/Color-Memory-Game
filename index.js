@@ -24,6 +24,8 @@ function init() {
   level = 0;
   buttons.off("click", activate);
   document.addEventListener("keydown", nextSequence);
+  $("#level-title").addClass("hide");
+  $("#mobile-instructions").removeClass("hide");
 }
 function reset() {
   userClickedPattern = [];
@@ -35,6 +37,7 @@ function begin() {
     respond(this.id);
   });
 }
+$("#play-btn").on("click", nextSequence)
 
 // Game Play
 function activate() {
@@ -66,13 +69,16 @@ function checkAnswer(currentLevel) {
       setTimeout(nextSequence, delay);
     }
   } else if (userClickedPattern[userClickedPattern.length - 1] !== gamePattern[userClickedPattern.length - 1]) {
+
+    // GAME OVER
+
     var wrong = new Audio("sounds/wrong.mp3");
     wrong.play();
     $("body").addClass("game-over");
     setTimeout(function() {
       $("body").removeClass("game-over");
     }, 200)
-    $("h1").text("Game Over, Press Any Key to Restart");
+    $("#level-title").text("Game Over, Press Any Key to Restart");
     play = false;
     buttons.removeClass("clickable");
     $("h3").text("Your Score: ");
@@ -80,14 +86,24 @@ function checkAnswer(currentLevel) {
     if (level - 1 > highscore) {
       highscore = (level - 1);
       setTimeout(reward, 1300);
+      $("#play-btn").removeClass("pulse");
       returning = true;
+    } else {
+      $("#play-btn").addClass("pulse");
     }
+    setTimeout(function(){
+      $("#play-btn").removeClass("hide");
+    }, 1300);
     init();
   }
 }
 
 function nextSequence() {
   document.removeEventListener("keydown", nextSequence);
+  $("#play-btn").addClass("hide");
+  $("#level-title").removeClass("hide");
+  $("#mobile-instructions").addClass('hide');
+
   if (returning === false) {
     $("h3").text("");
     $("#score").text("");
@@ -97,7 +113,7 @@ function nextSequence() {
     $("#score").text(highscore);
   }
   level++
-  $("h1").text("Level " + level);
+  $("#level-title").text("Level " + level);
   randomChosenColor = buttonColors[(Math.floor(Math.random() * 4))];
   gamePattern.push(randomChosenColor);
   $("#" + randomChosenColor).animate({
