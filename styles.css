@@ -60,6 +60,7 @@ h3, h2 {
     margin: 10px;
     height: 100px;
     width: 100px;
+    touch-action: manipulation;
   }
   .container {
     width: 50%;
@@ -96,9 +97,10 @@ h3, h2 {
   width: 50px;
   border: 2px solid #FEF2BF;
   border-radius: 100%;
-  font-family: cursive;
+  font-family: monospace;
   color: #FEF2BF;
   transition: .1s;
+  touch-action: manipulation;
 }
 #play-btn:hover {
   font-size: 1.2rem;

@@ -24,6 +24,7 @@ function init() {
   level = 0;
   buttons.off("click", activate);
   document.addEventListener("keydown", nextSequence);
+  document.addEventListener("keydown", nextSequence);
   $("#level-title").addClass("hide");
   $("#mobile-instructions").removeClass("hide");
 }
@@ -61,12 +62,17 @@ function checkAnswer(currentLevel) {
   if (userClickedPattern[userClickedPattern.length - 1] === gamePattern[userClickedPattern.length - 1]) {
     if (userClickedPattern.length === gamePattern.length) {
       delay = (Math.floor(Math.random() * 5000) + 1000);
-      if (delay > 5600) {
+      if ((delay > 5600) && (userClickedPattern.length > 5)) {
         delay = 4000;
       } else {
         delay = 1000
       }
-      setTimeout(nextSequence, delay);
+      function procede() {
+          if(userClickedPattern[userClickedPattern.length - 1] === gamePattern[userClickedPattern.length - 1]) {
+          nextSequence();
+        }
+      }
+      setTimeout(procede, delay);
     }
   } else if (userClickedPattern[userClickedPattern.length - 1] !== gamePattern[userClickedPattern.length - 1]) {
 
@@ -99,6 +105,7 @@ function checkAnswer(currentLevel) {
 }
 
 function nextSequence() {
+
   document.removeEventListener("keydown", nextSequence);
   $("#play-btn").addClass("hide");
   $("#level-title").removeClass("hide");
