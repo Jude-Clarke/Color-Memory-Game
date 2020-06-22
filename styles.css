@@ -1,0 +1,109 @@
+body {
+  text-align: center;
+  background-color: #011F3F;
+}
+
+/* #level-title*/ h1 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 3rem;
+  margin:  5% 5% 3%;
+  color: #FEF2BF;
+}
+h3, h2 {
+  font-family: "Press Start 2P", cursive;
+  font-size: 1rem;
+  margin: 0 auto 1%;
+  color: #FEF2BF;
+}
+#score {
+  font-size: 3rem;
+}
+
+.container {
+  display: block;
+  width: 50%;
+  margin: auto;
+}
+
+@media only screen and (max-width: 1130px) {
+  .container {
+    width: 70%;
+  }
+  .row {
+    display: inline;
+    width:40%;
+  }
+}
+.clickable{
+  cursor: pointer;
+}
+
+.btn {
+  margin: 25px;
+  display: inline-block;
+  height: 200px;
+  width: 200px;
+  border: 10px solid black;
+  border-radius: 20%;
+
+  /* disable text select */
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+}
+@media only screen and (max-width: 811px){
+  .btn {
+    margin: 10px;
+    height: 100px;
+    width: 100px;
+  }
+  .container {
+    width: 50%;
+  }
+}
+.game-over {
+  background-color: red;
+  opacity: 0.8;
+}
+.yay {
+  animation: pulse .8s infinite;
+  font-size: 3.5rem;
+  margin-bottom: 2.5%;
+}
+
+@keyframes pulse {
+
+  0% {transform: scale(.9);
+  }
+  60% {transform: scale(1);
+  }
+  100% {transform: scale(.9);
+  }
+}
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+
+}
+
+.blue {
+  background-color: blue;
+
+}
+
+.yellow {
+  background-color: yellow;
+
+}
+
+.pressed {
+  box-shadow: 0 0 20px white;
+  background-color: grey;
+}
